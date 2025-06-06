@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import type { FC, PropsWithChildren } from 'react';
 
 import { Onest } from 'next/font/google';
+import { getLocale } from 'next-intl/server';
 
 import { Providers } from '@/shared/processes/providers';
 
@@ -20,9 +21,11 @@ export const metadata: Metadata = {
     'Study hiragana, katakana, kanji, and vocabulary with interactive modules, smart flashcards, and quizzes — all in one Telegram Mini App.',
 };
 
-const RootLayout: FC<PropsWithChildren> = ({ children }) => {
+const RootLayout: FC<PropsWithChildren> = async ({ children }) => {
+  const locale = await getLocale();
+
   return (
-    <html lang='en' suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <body
         className={cn('max-h-dvh overscroll-none antialiased', onest.className)}
       >

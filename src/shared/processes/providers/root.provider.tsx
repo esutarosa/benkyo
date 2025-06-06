@@ -13,6 +13,7 @@ import { ErrorBoundary } from '@/shared/ui/error-boundary';
 import { ErrorPage } from '@/shared/ui/error-page';
 
 import { useDidMount } from '@/shared/hooks/use-did-mount.hook';
+import { setLocale } from '../i18n/locale';
 
 export const RootProvider = ({ children }: PropsWithChildren) => {
   const lp = useLaunchParams();
@@ -20,9 +21,11 @@ export const RootProvider = ({ children }: PropsWithChildren) => {
   const isDark = useSignal(miniApp.isDark);
   const initDataUser = useSignal(initData.user);
 
-  // useEffect(() => {
-  //   initDataUser && setLocale(initDataUser.language_code);
-  // }, [initDataUser]);
+  useEffect(() => {
+    if (initDataUser) {
+      setLocale(initDataUser.language_code);
+    }
+  }, [initDataUser]);
 
   const didMount = useDidMount();
 
