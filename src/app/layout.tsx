@@ -3,6 +3,8 @@ import type { FC, PropsWithChildren } from 'react';
 
 import { Onest } from 'next/font/google';
 
+import { Providers } from '@/shared/processes/providers';
+
 import { cn } from '@/shared/utils/cn';
 
 import '@/shared/styles/globals.css';
@@ -24,7 +26,7 @@ const RootLayout: FC<PropsWithChildren> = ({ children }) => {
       <body
         className={cn('max-h-dvh overscroll-none antialiased', onest.className)}
       >
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
